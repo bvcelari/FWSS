@@ -1,16 +1,17 @@
 from wsgiref.simple_server import WSGIServer, WSGIRequestHandler
 
 def echo(environ, start_response):
-        f = open('/home/debian/WS_ARIES/N_REG_ENTRADA', 'r+')
+        #N_REG_IN is a File containing an integer... 
+        f = open('N_REG_IN', 'r+')
         lNumreg=f.read()
         iNumreg=int(lNumreg.split('\n')[0])
-        print("regalado:" + str(iNumreg) )
+        print("Last:" + str(iNumreg) )
         f.close()
         #Nasty, but empty the file
-        f = open('/home/debian/WS_ARIES/N_REG_ENTRADA', 'w')
+        f = open('N_REG_IN', 'w')
         iNewreg=iNumreg+1
         res=f.write(str(iNewreg)+"\n")
-        print("Y ahora :" + str(iNewreg) )
+        print("New :" + str(iNewreg) )
         f.close()
         status = "200 OK"
         headers = [("Content-type", "text/xml")]
